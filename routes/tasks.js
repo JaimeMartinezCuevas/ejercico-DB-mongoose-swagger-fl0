@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Task = require("../models/Task.js");
 
+
 //CREATE TASK
 router.post("/create", async(req, res) => {
     try {
@@ -15,8 +16,8 @@ router.post("/create", async(req, res) => {
     }
 });
 
-//GET TASKS
 
+//GET TASKS
 router.get("/", async(req, res) => {
     try {
         const tasks = await Task.find();
@@ -26,8 +27,8 @@ router.get("/", async(req, res) => {
     }
 });
 
-//GET TASK BY ID
 
+//GET TASK BY ID
 router.get("/id/:_id", async(req, res) => {
     try {
         const task = await Task.findById(req.params._id);
@@ -41,8 +42,8 @@ router.get("/id/:_id", async(req, res) => {
     }
 }, )
 
-//MARK TASK AS COMPLETED (en este endpoint no le permitimos que edite el titulo)
 
+//MARK TASK AS COMPLETED
 router.put("/markAsCompleted/:_id", async(req, res) => {
         try {
             const task = await Task.findByIdAndUpdate(
@@ -60,8 +61,8 @@ router.put("/markAsCompleted/:_id", async(req, res) => {
         }
     }),
 
-    //UPDATE TASK
 
+    //UPDATE TASK
     router.put("/id/:_id", async(req, res) => {
         try {
             const task = await Task.findByIdAndUpdate(req.params._id, req.body, { new: true })
@@ -71,8 +72,8 @@ router.put("/markAsCompleted/:_id", async(req, res) => {
         }
     }),
 
-    //DELETE TASK
 
+    //DELETE TASK
     router.delete("/id/:_id", async(req, res) => {
         try {
             const task = await Task.findByIdAndDelete(req.params._id);
